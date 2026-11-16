@@ -47,7 +47,6 @@ module Typegap
     def decl(decl)
       case decl
       when RBS::AST::Declarations::Class, RBS::AST::Declarations::Module, RBS::AST::Declarations::Interface
-        decl.super_class&.args&.each { each_type(_1) } if decl.is_a?(RBS::AST::Declarations::Class)
         decl.members.each { member(_1) }
         getter_setter(decl)
         decl.members.each { decl(_1) if _1.is_a?(RBS::AST::Declarations::Base) }

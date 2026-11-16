@@ -19,3 +19,8 @@ class Clean
   def size: () -> Integer
   def size=: (Integer) -> Integer
 end
+
+# rbs-inline types a Struct's members as one union, so a type repeats there
+# whenever two members share it.
+class Pair < Struct[Integer | Integer]
+end
