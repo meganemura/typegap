@@ -1,0 +1,27 @@
+class Point
+  attr_reader x: Integer
+  def initialize: (Integer) -> void
+end
+
+class Shop
+  attr_reader status: :open | :closed
+  attr_reader name: String
+  attr_reader note: String?
+  attr_reader flag: bool?
+  attr_reader items: Array[String]
+  attr_reader points: Array[Point]
+  attr_reader mixed: Array[Integer | String]
+  attr_reader opts: Hash[Symbol, Integer]
+  %a{deprecated: use size} def old: () -> Integer
+  def count: () -> Integer
+  def log: (String) -> void
+  def lookup: () -> String?
+  def ready?: () -> String
+  def chain: () -> Shop
+  def size: () -> Integer
+  def size=: (String) -> String
+  def pick: [T] (T) -> void
+  def wide: () -> (String | untyped)
+  def twice: () -> (String | String)
+  def run: () -> void
+end

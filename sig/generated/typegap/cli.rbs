@@ -1,0 +1,30 @@
+# Generated from lib/typegap/cli.rb with RBS::Inline
+
+module Typegap
+  # The `typegap` command. It prints one finding per line, or one JSON object
+  # per line with `--json`, and exits 1 when there is a finding, so a CI job
+  # can run it as is.
+  class CLI
+    USAGE: String
+
+    # @rbs out: IO
+    # @rbs err: IO
+    def initialize: (?out: untyped, ?err: IO) -> void
+
+    # 0 with no finding, 1 with findings, 2 when the command cannot run.
+    # @rbs argv: Array[String]
+    # : (Array[String]) -> Integer
+    def run: (Array[String]) -> Integer
+
+    private
+
+    # @rbs argv: Array[String]
+    # : (Array[String]) -> Hash[Symbol, untyped]
+    def parse: (Array[String]) -> Hash[Symbol, untyped]
+
+    # @rbs findings: Array[Finding]
+    # @rbs json: bool
+    # : (Array[Finding], json: bool) -> void
+    def report: (Array[Finding], json: bool) -> void
+  end
+end

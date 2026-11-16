@@ -1,0 +1,21 @@
+class Item
+  attr_reader name: String
+  def initialize: (String) -> void
+  def to_s: () -> String
+end
+
+class Clean
+  attr_reader status: :open | :closed
+  attr_reader name: String
+  attr_reader note: String?
+  attr_reader flag: bool?
+  attr_reader items: Array[String]
+  attr_reader table: Hash[Symbol, Integer]
+  attr_reader numbers: Array[Integer]
+  @cache: String?
+  def initialize: () -> void
+  def run: () -> void
+  def pick: [T] (T) -> T
+  def size: () -> Integer
+  def size=: (Integer) -> Integer
+end

@@ -1,0 +1,89 @@
+# The parts of Steep that lib/ names. Steep ships no signatures, and lib/
+# treats every value it gets from Steep as untyped, so these declare names
+# only.
+module Steep
+  class Project
+    def initialize: (steepfile_path: Pathname) -> void
+    def targets: () -> Array[untyped]
+    def target_for_source_path: (Pathname) -> untyped
+
+    class DSL
+      def self.parse: (Project, String, ?filename: String) -> untyped
+    end
+  end
+
+  module Services
+    class ContentChange
+      def self.string: (String) -> untyped
+    end
+
+    class TypeCheckService
+      def initialize: (project: Project) -> void
+      def update: (changes: Hash[Pathname, Array[untyped]]) -> untyped
+      def typecheck_source: (path: Pathname, target: untyped) -> untyped
+      def source_files: () -> Hash[Pathname, untyped]
+      def signature_services: () -> Hash[Symbol, untyped]
+    end
+  end
+
+  module Diagnostic
+    module Ruby
+      class Base
+        def node: () -> untyped
+        def location: () -> untyped
+        def header_line: () -> String
+      end
+
+      class UnreachableBranch < Base
+      end
+
+      class UnreachableValueBranch < Base
+      end
+
+      class DeprecatedReference < Base
+      end
+    end
+  end
+
+  module AST
+    module Types
+      class Any end
+      class Top end
+      class Bot end
+      class Void end
+      class Nil end
+      class Boolean end
+      class Self end
+      class Instance end
+      class Class end
+      class Var end
+      class Union
+        def types: () -> Array[untyped]
+      end
+
+      class Intersection
+        def types: () -> Array[untyped]
+      end
+
+      class Literal
+        def value: () -> untyped
+      end
+
+      module Logic
+        class Base end
+      end
+
+      module Name
+        class Base
+          def name: () -> untyped
+        end
+
+        class Instance < Base
+          def args: () -> Array[untyped]
+        end
+        class Singleton < Base end
+        class Alias < Base end
+      end
+    end
+  end
+end

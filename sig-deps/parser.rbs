@@ -1,0 +1,15 @@
+# The parts of the parser gem that lib/ names. Steep parses with it. lib/
+# reads a node's type and children, and treats its locations as untyped.
+module Parser
+  module AST
+    class Node
+      def type: () -> Symbol
+      def children: () -> Array[untyped]
+      def loc: () -> untyped
+      def location: () -> untyped
+    end
+  end
+
+  class ParseError < StandardError
+  end
+end

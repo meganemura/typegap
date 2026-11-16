@@ -1,0 +1,300 @@
+# Generated from lib/typegap/source_check.rb with RBS::Inline
+
+module Typegap
+  # The rules that read one Ruby file's typing. Each rule reports code that
+  # the inferred types make unnecessary, impossible, or easy to misuse. In a
+  # codebase typed with RBS, most of these are places where the type and the
+  # code disagree: either the check is dead, or the type says too much.
+  #
+  # It reads Steep's typing and the RBS definitions; it does not infer types
+  # of its own, and it never changes a file.
+  class SourceCheck
+    include TypeFacts
+
+    # RBS core types these as never nil although they return nil (Hash#[] on
+    # a missing key, Array#first on an empty array, Thread#join on a
+    # timeout). Trusting them would report the very nil checks that keep the
+    # code safe.
+    NIL_HIDING_CALLS: Array[Symbol]
+
+    BASE_TO_S: Array[String]
+
+    CONVERSIONS: Hash[Symbol, String]
+
+    KERNEL_CONVERSIONS: Hash[Symbol, String]
+
+    VALUE_CLASSES: Array[String]
+
+    COLLECTIONS: Array[String]
+
+    BLOCKS: Array[Symbol]
+
+    ITERATORS: Array[Symbol]
+
+    # @rbs path: String
+    # @rbs typing: untyped
+    # @rbs builder: untyped
+    # @rbs rules: Array[String]
+    def initialize: (String path, untyped typing, untyped builder, Array[String] rules) -> void
+
+    # : () -> Array[Finding]
+    def findings: () -> Array[Finding]
+
+    private
+
+    # @rbs node_or_loc: untyped
+    # @rbs rule: String
+    # @rbs message: String
+    # : (untyped, String, String) -> void
+    def add: (untyped, String, String) -> void
+
+    # @rbs node: untyped
+    # : (untyped) -> String
+    def src: (untyped) -> String
+
+    # @rbs node: untyped
+    # @rbs parent: untyped
+    # @rbs nesting: Array[String]
+    # @rbs singleton: bool
+    # : (untyped, untyped, Array[String], bool) -> void
+    def walk: (untyped, untyped, Array[String], bool) -> void
+
+    # @rbs node: untyped
+    # @rbs parent: untyped
+    # @rbs nesting: Array[String]
+    # @rbs singleton: bool
+    # : (untyped, untyped, Array[String], bool) -> void
+    def check: (untyped, untyped, Array[String], bool) -> void
+
+    # @rbs node: untyped
+    # : (untyped) -> untyped
+    def type_of: (untyped) -> untyped
+
+    # @rbs node: untyped
+    # : (untyped) -> untyped
+    def raw_type: (untyped) -> untyped
+
+    # @rbs name: String
+    # : (String) -> Array[String]?
+    def ancestors: (String) -> Array[String]?
+
+    # @rbs name: String
+    # : (String) -> untyped
+    def instance_definition: (String) -> untyped
+
+    # @rbs name: String
+    # : (String) -> untyped
+    def singleton_definition: (String) -> untyped
+
+    # @rbs name: String
+    # : (String) -> bool
+    def class_entry?: (String) -> bool
+
+    # @rbs type_name: String
+    # @rbs method: Symbol
+    # : (String, Symbol) -> String?
+    def method_owner: (String, Symbol) -> String?
+
+    # @rbs node: untyped
+    # : (untyped) -> String?
+    def const_name: (untyped) -> String?
+
+    # @rbs node: untyped
+    # : (untyped) -> void
+    def safe_navigation: (untyped) -> void
+
+    # @rbs node: untyped
+    # @rbs parent: untyped
+    # : (untyped, untyped) -> void
+    def send_rules: (untyped, untyped) -> void
+
+    # @rbs node: untyped
+    # @rbs receiver: untyped
+    # @rbs name: Symbol
+    # @rbs args: Array[untyped]
+    # : (untyped, untyped, Symbol, Array[untyped]) -> void
+    def nil_check: (untyped, untyped, Symbol, Array[untyped]) -> void
+
+    # @rbs cond: untyped
+    # @rbs kind: Symbol
+    # : (untyped, Symbol) -> void
+    def condition: (untyped, Symbol) -> void
+
+    # @rbs node: untyped
+    # : (untyped) -> void
+    def or_rules: (untyped) -> void
+
+    # `a&.x? || b&.y?` is logic, not a default: false there is meant to fall
+    # through. `flag || true` is a default, and the very bug this rule is for.
+    #
+    # @rbs right: untyped
+    # : (untyped) -> bool
+    def boolean_logic?: (untyped) -> bool
+
+    # @rbs node: untyped
+    # @rbs receiver: untyped
+    # @rbs name: Symbol
+    # @rbs args: Array[untyped]
+    # : (untyped, untyped, Symbol, Array[untyped]) -> void
+    def type_check: (untyped, untyped, Symbol, Array[untyped]) -> void
+
+    # @rbs node: untyped
+    # @rbs value: untyped
+    # @rbs const: untyped
+    # : (untyped, untyped, untyped) -> void
+    def class_check: (untyped, untyped, untyped) -> void
+
+    # Only classes can be disjoint: any object can include a module.
+    #
+    # @rbs klass: String
+    # @rbs names: Array[String?]
+    # @rbs lists: Array[Array[String]?]
+    # : (String, Array[String?], Array[Array[String]?]) -> bool
+    def disjoint?: (String, Array[String?], Array[Array[String]?]) -> bool
+
+    # @rbs node: untyped
+    # @rbs receiver: untyped
+    # @rbs method: Symbol
+    # : (untyped, untyped, Symbol) -> void
+    def respond_check: (untyped, untyped, Symbol) -> void
+
+    # @rbs node: untyped
+    # @rbs receiver: untyped
+    # @rbs name: Symbol
+    # @rbs args: Array[untyped]
+    # : (untyped, untyped, Symbol, Array[untyped]) -> void
+    def boolean_compare: (untyped, untyped, Symbol, Array[untyped]) -> void
+
+    # @rbs node: untyped
+    # @rbs receiver: untyped
+    # @rbs name: Symbol
+    # @rbs args: Array[untyped]
+    # : (untyped, untyped, Symbol, Array[untyped]) -> void
+    def conversion: (untyped, untyped, Symbol, Array[untyped]) -> void
+
+    # [readable, value] for a literal node; nil for anything else.
+    #
+    # @rbs node: untyped
+    # : (untyped) -> [bool, untyped]
+    def literal_value: (untyped) -> [ bool, untyped ]
+
+    # @rbs node: untyped
+    # @rbs receiver: untyped
+    # @rbs name: Symbol
+    # @rbs args: Array[untyped]
+    # : (untyped, untyped, Symbol, Array[untyped]) -> void
+    def literal_comparison: (untyped, untyped, Symbol, Array[untyped]) -> void
+
+    # @rbs node: untyped
+    # @rbs parent: untyped
+    # : (untyped, untyped) -> bool
+    def statement?: (untyped, untyped) -> bool
+
+    # @rbs node: untyped
+    # @rbs parent: untyped
+    # @rbs receiver: untyped
+    # @rbs name: Symbol
+    # : (untyped, untyped, untyped, Symbol) -> void
+    def unused_result: (untyped, untyped, untyped, Symbol) -> void
+
+    # @rbs klass: String
+    # @rbs name: Symbol
+    # : (String, Symbol) -> bool
+    def bang?: (String, Symbol) -> bool
+
+    # @rbs node: untyped
+    # @rbs parent: untyped
+    # : (untyped, untyped) -> void
+    def void_used: (untyped, untyped) -> void
+
+    # @rbs node: untyped
+    # @rbs receiver: untyped
+    # : (untyped, untyped) -> void
+    def untyped_call: (untyped, untyped) -> void
+
+    # @rbs node: untyped
+    # @rbs parent: untyped
+    # @rbs receiver: untyped
+    # @rbs name: Symbol
+    # @rbs args: Array[untyped]
+    # : (untyped, untyped, untyped, Symbol, Array[untyped]) -> void
+    def sort_comparable: (untyped, untyped, untyped, Symbol, Array[untyped]) -> void
+
+    # @rbs node: untyped
+    # : (untyped) -> void
+    def interpolation: (untyped) -> void
+
+    # @rbs node: untyped
+    # @rbs part: untyped
+    # @rbs expr: untyped
+    # @rbs type: untyped
+    # : (untyped, untyped, untyped, untyped) -> void
+    def interpolated: (untyped, untyped, untyped, untyped) -> void
+
+    # @rbs node: untyped
+    # : (untyped) -> void
+    def case_rules: (untyped) -> void
+
+    # @rbs subject: untyped
+    # @rbs type: untyped
+    # @rbs conds: Array[untyped]
+    # : (untyped, untyped, Array[untyped]) -> void
+    def impossible_whens: (untyped, untyped, Array[untyped]) -> void
+
+    # @rbs node: untyped
+    # @rbs subject: untyped
+    # @rbs type: untyped
+    # @rbs conds: Array[untyped]
+    # : (untyped, untyped, untyped, Array[untyped]) -> void
+    def exhaustive: (untyped, untyped, untyped, Array[untyped]) -> void
+
+    # @rbs member: untyped
+    # @rbs conds: Array[untyped]
+    # : (untyped, Array[untyped]) -> bool
+    def covered?: (untyped, Array[untyped]) -> bool
+
+    # @rbs node: untyped
+    # @rbs parent: untyped
+    # : (untyped, untyped) -> void
+    def block_rules: (untyped, untyped) -> void
+
+    # @rbs node: untyped
+    # @rbs parent: untyped
+    # @rbs name: Symbol
+    # @rbs klass: String
+    # : (untyped, untyped, Symbol, String) -> void
+    def prefer_find: (untyped, untyped, Symbol, String) -> void
+
+    # @rbs node: untyped
+    # : (untyped) -> void
+    def assertion: (untyped) -> void
+
+    # @rbs node: untyped
+    # : (untyped) -> bool
+    def hint_shaped?: (untyped) -> bool
+
+    # @rbs node: untyped
+    # : (untyped) -> void
+    def splat: (untyped) -> void
+
+    # @rbs node: untyped
+    # @rbs nesting: Array[String]
+    # @rbs singleton: bool
+    # : (untyped, Array[String], bool) -> void
+    def def_rules: (untyped, Array[String], bool) -> void
+
+    # @rbs type: untyped
+    # : (untyped) -> bool
+    def boolish?: (untyped) -> bool
+
+    # Steep finds these itself, but its default diagnostic levels hide them as hints.
+    # : () -> void
+    def steep_hidden: () -> void
+
+    # Steep decides a branch is unreachable from the same types the rules
+    # above distrust: `h[k].nil?` is never true to it. Such a branch is kept.
+    # @rbs node: untyped
+    # : (untyped) -> bool
+    def reads_hidden_nil?: (untyped) -> bool
+  end
+end

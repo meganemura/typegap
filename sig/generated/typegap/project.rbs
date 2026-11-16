@@ -1,0 +1,41 @@
+# Generated from lib/typegap/project.rb with RBS::Inline
+
+module Typegap
+  # Type checks a project the way `steep check` does, from its Steepfile, and
+  # hands each Ruby file's typing to a block. It reads Steep's own service
+  # instead of re-implementing inference, so a finding means what Steep
+  # inferred. That service is not a public API, so this file is the one place
+  # that touches it.
+  class Project
+    attr_reader root: String
+
+    # @rbs root: String
+    def initialize: (String root) -> void
+
+    # Each Ruby source file of a target, relative to the root, with its typing
+    # and the RBS definition builder of its target. A file Steep could not
+    # type (a syntax error) is skipped: `steep check` reports it.
+    #
+    # @rbs paths: Array[String]
+    # @rbs &block: (String, untyped, untyped) -> void
+    # : (Array[String]) { (String, untyped, untyped) -> void } -> void
+    def each_typing: (Array[String]) { (String, untyped, untyped) -> void } -> void
+
+    # The signature files under sig/, which hold this project's own types.
+    # Stubs of other gems (sig-deps/ and the like) are not this project's to fix.
+    # : () -> Array[String]
+    def own_signature_paths: () -> Array[String]
+
+    private
+
+    # : () -> void
+    def load: () -> void
+
+    # : () -> Array[Pathname]
+    def source_paths: () -> Array[Pathname]
+
+    # @rbs path: String
+    # : (String) -> String
+    def relative: (String) -> String
+  end
+end

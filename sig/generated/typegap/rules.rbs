@@ -1,0 +1,36 @@
+# Generated from lib/typegap/rules.rb with RBS::Inline
+
+module Typegap
+  # The rules, each with the typescript-eslint rule it ports. A rule that is
+  # off by default reports too much to read as a list: it is a map to read
+  # with `--only`.
+  module Rules
+    class Rule < Data
+      attr_reader name(): untyped
+
+      attr_reader follows(): untyped
+
+      attr_reader default(): untyped
+
+      def self.new: (untyped name, untyped follows, untyped default) -> instance
+                  | (name: untyped, follows: untyped, default: untyped) -> instance
+
+      def self.members: () -> [ :name, :follows, :default ]
+
+      def members: () -> [ :name, :follows, :default ]
+    end
+
+    ALL: Array[Rule]
+
+    NAMES: Array[String]
+
+    # The rule names that run: `only` when given, else every default rule,
+    # less `except`. An unknown name raises, so a typo does not silently run
+    # nothing.
+    #
+    # @rbs only: Array[String]?
+    # @rbs except: Array[String]
+    # : (only: Array[String]?, except: Array[String]) -> Array[String]
+    def self.select: (only: Array[String]?, except: Array[String]) -> Array[String]
+  end
+end

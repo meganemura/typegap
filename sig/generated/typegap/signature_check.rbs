@@ -1,0 +1,60 @@
+# Generated from lib/typegap/signature_check.rb with RBS::Inline
+
+module Typegap
+  # The rules that read one signature file, as written or as rbs-inline
+  # writes it. They report a type that says less than it seems to: a union
+  # that `untyped` swallows, a type parameter that ties nothing together, a
+  # getter and a setter that disagree.
+  #
+  # It reads the file's declarations only. It does not resolve names, so it
+  # needs no environment.
+  class SignatureCheck
+    # @rbs path: String
+    # @rbs text: String
+    # @rbs rules: Array[String]
+    def initialize: (String path, String text, Array[String] rules) -> void
+
+    # A file RBS cannot parse has no findings: `steep check` reports it.
+    # : () -> Array[Finding]
+    def findings: () -> Array[Finding]
+
+    private
+
+    # @rbs loc: untyped
+    # @rbs rule: String
+    # @rbs message: String
+    # : (untyped, String, String) -> void
+    def add: (untyped, String, String) -> void
+
+    # @rbs decl: untyped
+    # : (untyped) -> void
+    def decl: (untyped) -> void
+
+    # @rbs member: untyped
+    # : (untyped) -> void
+    def member: (untyped) -> void
+
+    # @rbs type: untyped
+    # : (untyped) -> void
+    def each_type: (untyped) -> void
+
+    # @rbs type: untyped
+    # : (untyped) -> void
+    def redundant: (untyped) -> void
+
+    # @rbs type: untyped
+    # : (untyped) -> bool
+    def nil_inside?: (untyped) -> bool
+
+    # A type parameter used once relates nothing: `[T] (T) -> void` takes
+    # anything, as `(untyped) -> void` or `(top) -> void` does.
+    # @rbs member: untyped
+    # @rbs method_type: untyped
+    # : (untyped, untyped) -> void
+    def type_params: (untyped, untyped) -> void
+
+    # @rbs decl: untyped
+    # : (untyped) -> void
+    def getter_setter: (untyped) -> void
+  end
+end

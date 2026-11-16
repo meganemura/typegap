@@ -1,0 +1,14 @@
+# Generated from lib/typegap.rb with RBS::Inline
+
+# typegap reports where a Ruby project's RBS types and its code disagree, on
+# the typing Steep infers. It ports the type-aware rules of typescript-eslint.
+module Typegap
+  # Every finding in a project, sorted by place. `paths` limits the Ruby files
+  # read; signature files are read only when no path is given.
+  #
+  # @rbs root: String
+  # @rbs paths: Array[String]
+  # @rbs rules: Array[String]
+  # : (root: String, ?paths: Array[String], ?rules: Array[String]) -> Array[Finding]
+  def self.run: (root: String, ?paths: Array[String], ?rules: Array[String]) -> Array[Finding]
+end

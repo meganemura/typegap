@@ -1,0 +1,36 @@
+lib/shop.rb:13:7: PredicateReturnType: `ready?` ends with `?` but returns `::String`; return bool or rename it
+lib/shop.rb:14:7: PreferReturnSelfType: `chain` returns `self` but its type says `Shop`; `-> self` keeps the subclass type
+lib/shop.rb:27:5: DeprecatedReference: The method is deprecated: use size
+lib/shop.rb:28:5: UnnecessarySafeNavigation: `name` is `::String`, never nil, so `&.` is not needed
+lib/shop.rb:29:5: UnnecessaryNilCheck: `n` is `::Integer`, never nil, so this check is always the same
+lib/shop.rb:30:8: AlwaysTruthyCondition: `n` is `::Integer`, never nil or false, so this condition is always true (0 and "" are true in Ruby)
+lib/shop.rb:31:5: UnnecessaryDefault: `name` is `::String`, never nil or false, so the right side of `||` is never used
+lib/shop.rb:32:5: OrReplacesFalse: `flag` is `(bool | nil)`; `||` replaces false as well as nil. Use `x.nil? ? default : x` to replace only nil
+lib/shop.rb:33:5: UnnecessaryTypeCheck: `n` is `::Integer`, always a `::Integer`, so this check is always true
+lib/shop.rb:34:5: UnnecessaryTypeCheck: `n` is `::Integer`, never a `::String`, so this check is always false
+lib/shop.rb:35:5: UnnecessaryTypeCheck: `name` is `::String`, which has a public `upcase`, so `respond_to?` is always true
+lib/shop.rb:37:5: UnnecessaryBooleanCompare: `flag2` is `bool`, so compare it without `== true`
+lib/shop.rb:38:5: UnnecessaryConversion: `name` is already `::String`, so `.to_s` returns the same value
+lib/shop.rb:39:5: UnnecessaryConversion: `name` is already `::String`, so `"#{...}"` returns the same value
+lib/shop.rb:40:12: RestrictInterpolation: `note` is `(::String | nil)`; nil becomes an empty string here
+lib/shop.rb:41:13: RestrictInterpolation: `items` is `::Array[::String]`; it prints in inspect form (`[...]`, `{...}`)
+lib/shop.rb:42:13: RestrictInterpolation: `Point.new(1)` is `::Point`, which has no `to_s` of its own, so it prints as `#<Point>`
+lib/shop.rb:43:5: CaseExhaustiveness: `status` is `(:open | :closed)`, but no `when` handles `:closed` and there is no `else`
+lib/shop.rb:46:5: ImpossibleLiteralComparison: `status` is `(:open | :closed)`, never `:pending`, so `==` is always false
+lib/shop.rb:47:5: UnusedResult: `name.strip` returns a new String and its result is not used; `strip!` changes the receiver
+lib/shop.rb:48:5: UnusedResult: `items.map { ... }` returns a new Array and its result is not used; `map!` changes the receiver
+lib/shop.rb:49:9: VoidValueUsed: `log("a")` returns void, so its value means nothing here
+lib/shop.rb:50:9: NilDroppingAssertion: `lookup` is `(::String | nil)`; the assertion `::String` drops nil without a check. Raise or handle nil instead
+lib/shop.rb:51:9: UnnecessaryTypeAssertion: `name` is already `::String`, so the `#:` assertion can go
+lib/shop.rb:52:5: SortWithoutComparable: `::Point` has only Object#<=>, so `sort` raises ArgumentError. Pass a block or `sort_by`
+lib/shop.rb:52:5: UnusedResult: `points.sort` returns a new Array and its result is not used; `sort!` changes the receiver
+lib/shop.rb:53:5: SortWithoutComparable: the elements are `(::Integer | ::String)`; `sort` raises ArgumentError when it compares two of these classes. Pass a block or `sort_by`
+lib/shop.rb:53:5: UnusedResult: `mixed.sort` returns a new Array and its result is not used; `sort!` changes the receiver
+lib/shop.rb:54:5: PreferFind: `select { ... }.first` on Array builds a whole list to take one; use `find { ... }`
+lib/shop.rb:55:6: MisusedSplat: `opts` is `::Hash[::Symbol, ::Integer]`; `*` splits it into [key, value] pairs. Use `**` for keywords
+lib/shop.rb:56:8: UnnecessaryNilCheck: `n` is `::Integer`, never nil, so this check is always the same
+lib/shop.rb:56:15: UnreachableBranch: The branch is unreachable
+sig/shop.rbs:22:3: GetterSetterMismatch: `size` returns `Integer` but `size=` takes `String`
+sig/shop.rbs:23:3: UnnecessaryTypeParameter: `pick` declares `[T]` but uses it 1 time(s); it ties nothing together, so `untyped` or `top` says the same
+sig/shop.rbs:24:20: RedundantTypeConstituents: `String | untyped` contains `untyped`, so the whole union is untyped
+sig/shop.rbs:25:21: RedundantTypeConstituents: `String | String` lists String twice

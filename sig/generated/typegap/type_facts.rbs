@@ -1,0 +1,60 @@
+# Generated from lib/typegap/type_facts.rb with RBS::Inline
+
+module Typegap
+  # What a Steep type says about nil, false, and classes. Every predicate
+  # answers only for a type Steep knows completely: untyped, a type variable,
+  # self, or an alias Steep did not expand says nothing, so a rule built on
+  # these stays silent there instead of guessing.
+  module TypeFacts
+    # @rbs type: untyped
+    # : (untyped) -> Array[untyped]
+    def self?.members: (untyped) -> Array[untyped]
+
+    # @rbs type: untyped
+    # : (untyped) -> String?
+    def self?.instance_name: (untyped) -> String?
+
+    # The class name of a member, with nil as NilClass and a literal as its class.
+    # @rbs type: untyped
+    # : (untyped) -> String?
+    def self?.class_name: (untyped) -> String?
+
+    # @rbs type: untyped
+    # : (untyped) -> bool
+    def self?.nil_type?: (untyped) -> bool
+
+    # @rbs type: untyped
+    # : (untyped) -> bool
+    def self?.bool_type?: (untyped) -> bool
+
+    # @rbs type: untyped
+    # : (untyped) -> bool
+    def self?.can_be_false?: (untyped) -> bool
+
+    # @rbs type: untyped
+    # : (untyped) -> bool
+    def self?.known?: (untyped) -> bool
+
+    # @rbs type: untyped
+    # : (untyped) -> bool
+    def self?.never_nil?: (untyped) -> bool
+
+    # @rbs type: untyped
+    # : (untyped) -> bool
+    def self?.never_falsy?: (untyped) -> bool
+
+    # @rbs type: untyped
+    # : (untyped) -> bool
+    def self?.nilable?: (untyped) -> bool
+
+    # A union of literals such as `:open | :closed`, possibly with nil.
+    # @rbs type: untyped
+    # : (untyped) -> bool
+    def self?.literal_union?: (untyped) -> bool
+
+    # @rbs type: untyped
+    # @rbs value: untyped
+    # : (untyped, untyped) -> bool
+    def self?.includes_literal?: (untyped, untyped) -> bool
+  end
+end
