@@ -1,6 +1,6 @@
 # Changelog
 
-## [Unreleased]
+## [0.1.0] - 2026-11-16
 
 First release. typegap reports where a Ruby project's RBS types and its code disagree, on the typing Steep infers.
 
